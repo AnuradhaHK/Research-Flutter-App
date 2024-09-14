@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                         builder: (context) => const FileUploadScreen()),
                   );
                 },
-                child: const Text('File Upload'),
+                child: const Text('FILE UPLOAD'),
               ),
             ),
             const SizedBox(height: 10),
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
               child: ElevatedButton(
                 style: ButtonStyles.elevatedButtonStyle,
                 onPressed: () {},
-                child: const Text('CRUD Operation'),
+                child: const Text('CRUD OPERATION'),
               ),
             ),
             const SizedBox(height: 10),
