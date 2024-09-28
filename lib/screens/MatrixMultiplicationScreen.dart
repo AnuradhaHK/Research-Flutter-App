@@ -164,7 +164,7 @@ class _MatrixMultiplierScreenState extends State<MatrixMultiplierScreen> {
             if (_resultMatrix != null) ...[
               if (_calculationTime != null)
                 Text(
-                  'Calculation Time: $_calculationTime microseconds',
+                  'Calculation Time: $_calculationTime µs',
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),

@@ -135,7 +135,8 @@ class _NetworkRequestScreenState extends State<NetworkRequestScreen> {
                       itemBuilder: (context, index) {
                         return ListTile(
                           leading: Image.network(
-                            'https://cors-anywhere.herokuapp.com/${_data[index]['thumbnailUrl']}',
+                            _data[index]
+                                ['thumbnailUrl'], // No need for CORS Anywhere
                             errorBuilder: (context, error, stackTrace) {
                               return const Icon(Icons.broken_image);
                             },
