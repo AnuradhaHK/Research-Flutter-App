@@ -17,18 +17,23 @@ class _MatrixMultiplierScreenState extends State<MatrixMultiplierScreen> {
   int? _calculationTime;
 
   void _generateMatrices() {
-    int rows = int.tryParse(_rowsController.text) ?? 0;
-    int cols = int.tryParse(_colsController.text) ?? 0;
+    int rowsA = int.tryParse(_rowsController.text) ?? 0;
+    int colsA = int.tryParse(_colsController.text) ?? 0;
 
-    if (rows > 0 && cols > 0) {
+    // Ensure rows and columns are greater than 0
+    if (rowsA > 0 && colsA > 0) {
       setState(() {
         _matricesGenerated = true;
         _resultMatrix = null;
         _calculationTime = null;
+
+        // Matrix A will have dimensions rowsA x colsA
         _matrixAControllers = List.generate(
-            rows, (i) => List.generate(cols, (j) => TextEditingController()));
+            rowsA, (i) => List.generate(colsA, (j) => TextEditingController()));
+
+        // Matrix B should have dimensions colsA x rowsA
         _matrixBControllers = List.generate(
-            rows, (i) => List.generate(cols, (j) => TextEditingController()));
+            colsA, (i) => List.generate(rowsA, (j) => TextEditingController()));
       });
     } else {
       setState(() {
@@ -38,27 +43,33 @@ class _MatrixMultiplierScreenState extends State<MatrixMultiplierScreen> {
   }
 
   void _multiplyMatrices() {
-    int rows = _matrixAControllers.length;
-    int cols = _matrixAControllers[0].length;
+    int rowsA = _matrixAControllers.length;
+    int colsA = _matrixAControllers[0].length;
+    int rowsB = _matrixBControllers.length;
+    int colsB = _matrixBControllers[0].length;
 
+    // Matrix A has dimensions rowsA x colsA
     List<List<int>> matrixA = List.generate(
-        rows,
+        rowsA,
         (i) => List.generate(
-            cols, (j) => int.tryParse(_matrixAControllers[i][j].text) ?? 0));
+            colsA, (j) => int.tryParse(_matrixAControllers[i][j].text) ?? 0));
 
+    // Matrix B has dimensions rowsB x colsB (which should be colsA x rowsA)
     List<List<int>> matrixB = List.generate(
-        rows,
+        rowsB,
         (i) => List.generate(
-            cols, (j) => int.tryParse(_matrixBControllers[i][j].text) ?? 0));
+            colsB, (j) => int.tryParse(_matrixBControllers[i][j].text) ?? 0));
 
+    // Resultant matrix will have dimensions rowsA x colsB
     List<List<int>> result =
-        List.generate(rows, (i) => List.generate(cols, (j) => 0));
+        List.generate(rowsA, (i) => List.generate(colsB, (j) => 0));
 
     final startTime = DateTime.now();
 
-    for (int i = 0; i < rows; i++) {
-      for (int j = 0; j < cols; j++) {
-        for (int k = 0; k < cols; k++) {
+    // Perform matrix multiplication
+    for (int i = 0; i < rowsA; i++) {
+      for (int j = 0; j < colsB; j++) {
+        for (int k = 0; k < rowsB; k++) {
           result[i][j] += matrixA[i][k] * matrixB[k][j];
         }
       }
@@ -93,7 +104,6 @@ class _MatrixMultiplierScreenState extends State<MatrixMultiplierScreen> {
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
-        // Wrap with SingleChildScrollView
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

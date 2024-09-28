@@ -18,7 +18,18 @@ class HomeScreen extends StatelessWidget {
           // Topic text, similar to the image design
           const Center(
             child: Text(
-              'React Native Performance Test App',
+              'Flutter',
+              textAlign: TextAlign.center, // Ensures text is centered
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          const Center(
+            child: Text(
+              'Performance Test App',
               textAlign: TextAlign.center, // Ensures text is centered
               style: TextStyle(
                   color: Colors.white,
@@ -32,7 +43,7 @@ class HomeScreen extends StatelessWidget {
           // Expanded white container touching the bottom
           Expanded(
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              padding: const EdgeInsets.symmetric(vertical: 30.0),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -72,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                         child: const Text('Call API Request'),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 30),
 
                     // File Upload Section
                     const Text(
@@ -102,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                         child: const Text('File Uploader'),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 30),
 
                     // Matrix Multiplication Section
                     const Text(
@@ -133,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                         child: const Text('Multiply'),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 30),
 
                     // Prime Numbers Generation Section
                     const Text(
